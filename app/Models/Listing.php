@@ -11,5 +11,7 @@ class Listing extends Model
         'description',
         'img',
         'price',
+        'vendor',
+        'stock',
     ];
 }
