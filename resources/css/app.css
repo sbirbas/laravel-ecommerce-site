@@ -9,3 +9,12 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+#hero {
+    background-image: url('/media/sunglasses.jpg');
+    min-width: 100vh;
+    height: 24em;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
