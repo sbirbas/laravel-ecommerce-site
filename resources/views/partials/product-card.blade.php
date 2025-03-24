@@ -1,8 +1,8 @@
 
 
-<div class="col-auto max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-white-800 dark:border-gray-700">
+<div class="m-5 w-full aspect-square max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-white-800 dark:border-gray-700">
     <a href="#">
-        <img class="p-8 rounded-t-lg" src="/docs/images/products/apple-watch.png" alt="product image" />
+        <img class="p-8 rounded-t-lg" src="{{ $listing->img }}" alt="product image" />
     </a>
     <div class="px-5 pb-5">
         <a href="#">
@@ -30,7 +30,8 @@
         </div>
         <div class="flex items-center justify-between">
             <span class="text-3xl font-bold">{{ $listing->price }}</span>
-            <a href="#" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</a>
+            {{-- <a href={{ route('listing.show', $listing->id) }} class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Details</a> --}}
+            <a href="{{ route('add-to-cart', $listing->id) }}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</a>
         </div>
     </div>
 </div>

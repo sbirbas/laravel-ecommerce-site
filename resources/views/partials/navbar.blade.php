@@ -12,27 +12,10 @@
             <nav aria-label="Global">
               <ul class="flex items-center gap-6 text-sm">
                 <li>
-                  <a class="text-black transition hover:text-gray-500" href="#"> About </a>
+                  <a class="text-black transition hover:text-gray-500" href="/"> About </a>
                 </li>
-                <li class="relative">
-                    <button id="womenDropdown" class="text-black transition hover:text-gray-500">Women</button>
-                    <ul id="womenMenu" class="absolute left-0 mt-2 w-40 bg-white border border-gray-300 shadow-lg rounded-md hidden">
-                      <li><a class="block px-4 py-2 hover:bg-gray-100" href="#">Dresses</a></li>
-                      <li><a class="block px-4 py-2 hover:bg-gray-100" href="#">Shoes</a></li>
-                      <li><a class="block px-4 py-2 hover:bg-gray-100" href="#">Accessories</a></li>
-                    </ul>
-                  </li>
-
-                  <li class="relative">
-                    <button id="menDropdown" class="text-black transition hover:text-gray-500">Men</button>
-                    <ul id="menMenu" class="absolute left-0 mt-2 w-40 bg-white border border-gray-300 shadow-lg rounded-md hidden">
-                      <li><a class="block px-4 py-2 hover:bg-gray-100" href="#">Shirts</a></li>
-                      <li><a class="block px-4 py-2 hover:bg-gray-100" href="#">Pants</a></li>
-                      <li><a class="block px-4 py-2 hover:bg-gray-100" href="#">Watches</a></li>
-                    </ul>
-                  </li>
                 <li>
-                  <a class="text-black transition hover:text-gray-500" href="#"> Services </a>
+                  <a class="text-black transition hover:text-gray-500" href="/"> Shop </a>
                 </li>
                 <li>
                   <a class="text-black transition hover:text-gray-500" href="#"> Projects </a>
@@ -46,11 +29,11 @@
 
           <div class="flex items-center gap-4">
             <div class="sm:flex sm:gap-4">
-                <a class="hidden sm:block rounded-md bg-white px-5 py-2.5 text-sm font-medium text-black transition hover:text-gray-500" href="#">
+                <a class="hidden sm:block rounded-md bg-white px-5 py-2.5 text-sm font-medium text-black transition hover:text-gray-500" href={{ route('login.form') }}>
                     Login
               </a>
 
-              <a class="hidden sm:block rounded-md bg-white px-5 py-2.5 text-sm font-medium text-black transition hover:text-gray-500" href="#">
+              <a class="hidden sm:block rounded-md bg-white px-5 py-2.5 text-sm font-medium text-black transition hover:text-gray-500" href={{ route('register.form') }}>
                 Register
               </a>
             </div>

@@ -10,14 +10,11 @@
 
 <div class="featured row p-5">
     <h1 class="text-center">Featured Items</h1>
-    @for(i == 0; i<5; i++;)
     @foreach($listings as $listing)
-        <div class="columns-3">
+        <div class="">
     @include('partials.product-card', ['listing' => $listing])
         </div>
     @endforeach
-
-    @endfor
 </div>
 
 @endsection
