@@ -27,17 +27,18 @@
             </nav>
           </div>
 
-          <div class="flex items-center gap-4">
-            <div class="sm:flex sm:gap-4">
-                <a class="hidden sm:block rounded-md bg-white px-5 py-2.5 text-sm font-medium text-black transition hover:text-gray-500" href={{ route('login.form') }}>
-                    Login
-              </a>
-
-              <a class="hidden sm:block rounded-md bg-white px-5 py-2.5 text-sm font-medium text-black transition hover:text-gray-500" href={{ route('register.form') }}>
-                Register
-              </a>
-            </div>
-
+          @auth
+          <li><a href="{{ route(Auth::user()->isVendor() ? 'vendor.dashboard' : 'customer.dashboard') }}">Dashboard</a></li>
+          <li>
+              <form action="{{ route('logout') }}" method="POST">
+                  @csrf
+                  <button type="submit">Logout</button>
+              </form>
+          </li>
+      @else
+          <li><a href="{{ route('register') }}">Register</a></li>
+          <li><a href="{{ route('login') }}">Login</a></li>
+      @endauth
             <div class="block md:hidden">
               <button class="rounded bg-gray-100 p-2 text-black transition hover:text-gray-500">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
