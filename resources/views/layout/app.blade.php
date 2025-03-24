@@ -16,11 +16,11 @@
 
         @endif
     </head>
-<body>
+<body class="flex flex-col min-h-screen">
 
     @include('partials.navbar')
 
-    <div class="container">
+    <div class="flex-grow container min-w-screen">
         @yield('content')
     </div>
 

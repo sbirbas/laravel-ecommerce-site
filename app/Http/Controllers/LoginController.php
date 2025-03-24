@@ -1,11 +1,11 @@
 <?php
 
-// app/Http/Controllers/LoginController.php
-
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
 
 class LoginController extends Controller
 {
@@ -15,7 +15,7 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
-    public function login(Request $request)
+    public function authenticate(Request $request): RedirectResponse
     {
         $credentials = $request->validate([
             'email' => ['required', 'email'],
@@ -23,30 +23,29 @@ class LoginController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+
+            // Redirect based on user role
             return $this->authenticated($request, Auth::user());
         }
 
         return back()->withErrors([
-            'email' => 'The provided credentials are incorrect.',
-        ]);
+            'email' => 'The provided credentials do not match our records.',
+        ])->onlyInput('email');
     }
 
-    protected function authenticated(Request $request, $user)
+    protected function authenticated(Request $request, User $user): RedirectResponse
     {
-        if ($user->isVendor()) {
-            return redirect()->route('vendor.dashboard');
-        } else {
-            return redirect()->route('customer.dashboard');
-        }
+        return redirect()->route($user->role === 'vendor' ? 'vendor.dashboard' : 'customer.dashboard', ['user' => $user->id]);
     }
 
-    public function logout(Request $request)
-{
-    Auth::logout();
+    public function logout(Request $request): RedirectResponse
+    {
+        Auth::logout();
 
-    $request->session()->invalidate();
-    $request->session()->regenerateToken();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
-    return redirect('/login');
-}
+        return redirect('/login');
+    }
 }

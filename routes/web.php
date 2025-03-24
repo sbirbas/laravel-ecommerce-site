@@ -11,27 +11,29 @@ use App\Http\Controllers\CustomerController;
 
 use Illuminate\Support\Facades\Route;
 
+// Home Route
 Route::get('/', [HomeController::class, 'index']);
 
-//Login
-Route::get('/login', [LoginController::class, 'index'])->name('login.form');
+// Authentication Routes
+Route::middleware(['web'])->group(function () {
+    Route::get('/login', [LoginController::class, 'index'])->name('login.form');
+    Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
+    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+});
 
-Route::post('/login', [LoginController::class, 'login'])->name('login');
+// Register Routes
+Route::middleware(['web'])->group(function () {
+    Route::get('/register', [RegisterController::class, 'index'])->name('register.form');
+    Route::post('/register', [RegisterController::class, 'register'])->name('register');
+});
 
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-//Register
+// Listing Routes
+Route::get('/listing/{id}', [ListingController::class, 'show'])->name('listing-show');
 
-Route::get('/register', [RegisterController::class, 'index'])->name('register.form');
+// Cart Routes
+Route::get('/cart', [CartController::class, 'showCart'])->name('cart');
+Route::post('/add-to-cart/{id}', [CartController::class, 'addToCart'])->name('add-to-cart');
 
-Route::post('/register', [RegisterController::class, 'register'])->name('register');
-//listings
-
-Route::get('/listing/{id}', [ListingController::class, 'show'])->name('listing.show');
-//cart
-Route::get('/listing/{id}', [CartController::class, 'showCart'])->name('cart');
-
-Route::post('/listing/{id}', [CartController::class, 'addToCart'])->name('add-to-cart');
-
-Route::get('/vendor/dashboard', [VendorController::class, 'index'])->name('vendor.dashboard');
-
-Route::get('/customer/dashboard', [CustomerController::class, 'index'])->name('customer.dashboard');
+// Vendor and Customer Dashboards
+Route::get('/vendor/dashboard/{user}', [VendorController::class, 'index'])->name('vendor.dashboard')->middleware('auth');
+Route::get('/customer/dashboard/{user}', [CustomerController::class, 'index'])->name('customer.dashboard')->middleware('auth');

@@ -11,7 +11,7 @@ class Cart extends Model
 {
     use HasFactory;
     protected $table = 'cart';
-
+    public $incrementing = false;
     protected $fillable = ['user_id', 'listing_id', 'quantity', 'price'];
 
     public function listing()

@@ -11,8 +11,6 @@ class CartController extends Controller
 {
     public function showCart()
     {
-        dd(auth()->user());
-
         $cartItems = Cart::where('user_id', auth()->id())->get();
         return view('auth.cart', compact('cartItems'));
     }

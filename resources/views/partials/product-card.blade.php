@@ -28,10 +28,18 @@
             </div>
             <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-sm dark:bg-blue-200 dark:text-blue-800 ms-3">5.0</span>
         </div>
-        <div class="flex items-center justify-between">
-            <span class="text-3xl font-bold">{{ $listing->price }}</span>
-            {{-- <a href={{ route('listing.show', $listing->id) }} class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Details</a> --}}
-            <a href="{{ route('add-to-cart', $listing->id) }}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</a>
+        <div class="flex justify-between items-center">
+            <span class="text-1xl font-bold">${{ $listing->price }}</span>
+            <div class="flex items-center space-x-2">
+                <a href="{{ route('add-to-cart', $listing->id) }}"
+                   class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                   Add to cart
+                </a>
+                <a href="{{ route('listing-show', ['id' => $listing->id]) }}"
+                   class="text-blue-700 hover:text-blue-800 font-medium text-sm">
+                   View Listing
+                </a>
+            </div>
         </div>
     </div>
 </div>

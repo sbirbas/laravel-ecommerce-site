@@ -28,8 +28,8 @@
           </div>
 
           @auth
-          <li><a href="{{ route(Auth::user()->isVendor() ? 'vendor.dashboard' : 'customer.dashboard') }}">Dashboard</a></li>
-          <li>
+          <a href="{{ route(Auth::user()->isVendor() ? 'vendor.dashboard' : 'customer.dashboard', ['user' => Auth::id()]) }}">Dashboard</a>
+                 <li>
               <form action="{{ route('logout') }}" method="POST">
                   @csrf
                   <button type="submit">Logout</button>

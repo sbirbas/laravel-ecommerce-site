@@ -31,12 +31,11 @@ class RegisterController extends Controller
             'role' => $request->role,
         ]);
 
+        // Authenticate the newly registered user
         Auth::login($user);
+        $request->session()->regenerate(); // Regenerate session after login
 
-        if ($user->role === 'vendor') {
-            return redirect()->route('vendor.dashboard');
-        }
-
-        return redirect()->route('customer.dashboard');
+        // Redirect based on user role
+        return redirect()->route($user->role === 'vendor' ? 'vendor.dashboard' : 'customer.dashboard', ['user' => $user->id]);
     }
 }
